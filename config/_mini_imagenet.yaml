@@ -1,0 +1,52 @@
+output_dir: null
+
+dataset:
+  name: mini-imagenet
+  data_path: /gruntdata3/kaihua/datasets/imagenet/ILSVRC/Data/CLS-LOC
+  category_path: ./data/mini-ImageNet/category_frame.csv
+  train_path: ./data/mini-ImageNet/train_frame.csv
+  test_path: ./data/mini-ImageNet/test_frame.csv
+  val_path: ./data/mini-ImageNet/val_frame.csv
+  num_classes: 100
+  img_size: 64
+  rand_aug: false
+
+networks:
+  def_file: ./models/ResNet.py
+  params: {m_type: 'resnet18', cls_type: 'fc', num_classes: 100}
+
+strategy:
+  train_type: 'baseline'   # baseline / mixup / simsiam
+  test_type: 'baseline' 
+
+attacker_opt:
+  adv_val: false          # Adversarial attack during inference
+  adv_train: false        # Adversarial training
+  attack_type: 'FGSM'     # Adversarial attack algorithm type, candidates: 'PGD', 'PGDL2', 'FGSM', 'FFGSM', 'GN', 'UN'
+  attack_set: 'setting1'  # attack setting is under attacker_config.yaml 
+  eot_iter: 1             # EOT version of attacker is applied when eot_iter > 1 
+
+
+training_opt:
+  num_epochs: 110
+  batch_size: 128
+  data_workers: 4
+  optimizer: 'SGD'  # 'Adam' / 'SGD'
+  optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0005}
+  scheduler: 'step' # 'cosine' / 'step'
+  scheduler_params: {endlr: 0.0, gamma: 0.1, milestones: [10, 100, 105]}
+
+test_opt:                        
+  save_data: false               # for val
+  file_name: 'adv_images.pth'    # for val
+  save_length: 5                 # only save first 10 batch for efficiency
+
+
+logger_opt:
+  print_grad: false
+  print_iter: 100
+
+checkpoint_opt:
+  save_best: true          # only save the model that better than previous epoches (except the last epoch)
+  checkpoint_step:  10
+  checkpoint_name: 'test_model.pth'

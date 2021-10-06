@@ -1,0 +1,61 @@
+output_dir: null
+
+dataset:
+  name: mini-imagenet
+  data_path: /gruntdata3/kaihua/datasets/imagenet/ILSVRC/Data/CLS-LOC
+  category_path: ./data/mini-ImageNet/category_frame.csv
+  train_path: ./data/mini-ImageNet/train_frame.csv
+  test_path: ./data/mini-ImageNet/test_frame.csv
+  val_path: ./data/mini-ImageNet/val_frame.csv
+  num_classes: 100
+  img_size: 64
+  rand_aug: false
+
+networks:
+  def_file: ./models/ResNet_CiiV.py
+  params: {m_type: 'resnet18', num_classes: 100, num_sample: 3, aug_weight: 0.8, mask_center: [32, 11, 53]}
+
+strategy:
+  train_type: 'ciiv_mixup'  
+  test_type: 'ciiv'   
+
+attacker_opt:
+  adv_val: false          # Adversarial attack during inference
+  adv_train: false        # Adversarial training
+  attack_type: 'FGSM'     # Adversarial attack algorithm type, candidates: 'PGD', 'PGDL2', 'FGSM', 'FFGSM', 'GN', 'UN'
+  attack_set: 'setting1'  # attack setting is under attacker_config.yaml 
+  eot_iter: 1             # EOT version of attacker is applied when eot_iter > 1 
+
+training_opt:
+  num_epochs: 110
+  batch_size: 128
+  data_workers: 4
+  optimizer: 'SGD'  # 'Adam' / 'SGD'
+  optim_params: {lr: 0.1, momentum: 0.9, weight_decay: 0.0005}
+  scheduler: 'step' # 'cosine' / 'step'
+  scheduler_params: {endlr: 0.0, gamma: 0.1, milestones: [10, 100, 105]}
+
+inst_sample:
+  w_ce: 1                     # cross entropy loss weight
+  w_reg: 0.1                  # regression loss weight
+  mul_ru: 10                  # regression weight multiplier
+  milestones: [25,50,75]      # update w_reg by mul_ru at K-th epoch
+  num_loop: 9                 # number of consistent loops
+  reg_loss: 'L1'              # L1 or L2
+  ce_smooth: false            # use z_score to smooth the ce loss
+
+
+test_opt:                        
+  save_data: false               # for val
+  file_name: 'adv_images.pth'    # for val
+  save_length: 5                 # only save first 10 batch for efficiency
+
+
+logger_opt:
+  print_grad: false
+  print_iter: 100
+
+checkpoint_opt:
+  save_best: true          # only save the model that better than previous epoches (except the last epoch)
+  checkpoint_step:  10
+  checkpoint_name: 'test_model.pth'

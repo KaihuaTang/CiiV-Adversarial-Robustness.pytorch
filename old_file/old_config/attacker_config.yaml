@@ -1,0 +1,126 @@
+
+# attacker settings for each dataset
+
+TOYData:
+  FGSM:
+    setting1: {attack_eps: 128, attack_rand_ini: 0.0}
+  PGD:
+    setting1: {attack_eps: 128, attack_alpha: 8, attack_step: 20, attack_rand_ini: 1.0}
+
+mnist:
+  AutoAttack:
+    setting1: {attack_eps:  32, attack_norm: 'Linf', attack_rand_ini: 0.0}
+    setting2: {attack_eps: 128, attack_norm: 'L2', attack_rand_ini: 0.0}
+  FGSM:
+    setting1: {attack_eps: 32, attack_rand_ini: 0.0}
+    setting2: {attack_eps: 64, attack_rand_ini: 0.0}
+  BFS:
+    setting1: {sigma: 0.25, eps: 32, steps: 100, attack_rand_ini: 0.0}
+  FFGSM:
+    setting1: {attack_eps: 32, attack_alpha: 10, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 64, attack_alpha: 20, attack_rand_ini: 1.0}
+  PGD:
+    setting1: {attack_eps: 32, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 64, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  ADAPTIVE:
+    setting1: {attack_eps: 32, attack_alpha: 2, attack_step: 20, weight: 10.0, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 64, attack_alpha: 2, attack_step: 20, weight: 10.0, attack_rand_ini: 1.0}
+  PGDL2:
+    setting1: {attack_eps: 128, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 255, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+  GN:
+    setting1: {sigma: 0.25, eps: 32, attack_rand_ini: 0.0}
+  UN:
+    setting1: {un_sigma: 0.25, attack_rand_ini: 0.0}
+  BPDAPGD:
+    setting1: {attack_eps: 32, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  EOT:
+    setting1: {attack_eps: 32, attack_lr: 100.0, attack_step: 100, attack_rand_ini: 1.0, eot_iter: 10}
+  CW:
+    setting1: {c: 0.0001, kappa: 0, steps: 1000, lr: 0.1, attack_rand_ini: 1.0}
+  SPSA:
+    setting1: {delta: 0.1, batch_size: 16, steps: 20, lr: 0.1, attack_rand_ini: 1.0}
+
+cifar10:
+  AutoAttack:
+    setting1: {attack_eps:   8, attack_norm: 'Linf', attack_rand_ini: 0.0}
+    setting2: {attack_eps: 128, attack_norm: 'L2', attack_rand_ini: 0.0}
+  FGSM:
+    setting1: {attack_eps:  8, attack_rand_ini: 0.0}
+    setting2: {attack_eps: 16, attack_rand_ini: 0.0}
+  BFS:
+    setting1: {sigma: 0.1, eps: 8, steps: 100, attack_rand_ini: 0.0}
+  FFGSM:
+    setting1: {attack_eps:  8, attack_alpha: 10, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 20, attack_rand_ini: 1.0}
+  PGD:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+    setting3: {attack_eps:  8, attack_alpha: 2, attack_step: 10, attack_rand_ini: 1.0}
+  ADAPTIVE:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, weight: 10.0, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 2, attack_step: 20, weight: 10.0, attack_rand_ini: 1.0}
+  PGDL2:
+    setting1: {attack_eps: 128, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 255, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+  GN:
+    setting1: {sigma: 0.1, eps: 8, attack_rand_ini: 0.0}
+  UN:
+    setting1: {un_sigma: 0.1, attack_rand_ini: 0.0}
+  BPDAPGD:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  EOT:
+    setting1: {attack_eps:  8, attack_lr: 100.0, attack_step: 100, attack_rand_ini: 1.0, eot_iter: 10}
+  CW:
+    setting1: {c: 0.0001, kappa: 0, steps: 1000, lr: 0.1, attack_rand_ini: 1.0}
+  SPSA:
+    setting1: {delta: 0.1, batch_size: 16, steps: 20, lr: 0.1, attack_rand_ini: 1.0}
+
+imagenet:
+  FGSM:
+    setting1: {attack_eps:  8, attack_rand_ini: 0.0}
+    setting2: {attack_eps: 16, attack_rand_ini: 0.0}
+  FFGSM:
+    setting1: {attack_eps:  8, attack_alpha: 10, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 20, attack_rand_ini: 1.0}
+  PGD:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  PGDL2:
+    setting1: {attack_eps: 128, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 255, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+  GN:
+    setting1: {gn_sigma: 0.25, attack_rand_ini: 0.0}
+  UN:
+    setting1: {un_sigma: 0.25, attack_rand_ini: 0.0}
+  BPDAPGD:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  EOT:
+    setting1: {attack_eps:  8, attack_lr: 100.0, attack_step: 100, attack_rand_ini: 1.0, eot_iter: 10}
+  CW:
+    setting1: {c: 0.0001, kappa: 0, steps: 1000, lr: 0.1, attack_rand_ini: 1.0}
+
+
+mini-imagenet:
+  FGSM:
+    setting1: {attack_eps:  8, attack_rand_ini: 0.0}
+    setting2: {attack_eps: 16, attack_rand_ini: 0.0}
+  FFGSM:
+    setting1: {attack_eps:  8, attack_alpha: 10, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 20, attack_rand_ini: 1.0}
+  PGD:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 16, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  PGDL2:
+    setting1: {attack_eps: 128, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+    setting2: {attack_eps: 255, attack_alpha: 20, attack_step: 20, attack_rand_ini: 1.0}
+  GN:
+    setting1: {gn_sigma: 0.25, attack_rand_ini: 0.0}
+  UN:
+    setting1: {un_sigma: 0.25, attack_rand_ini: 0.0}
+  BPDAPGD:
+    setting1: {attack_eps:  8, attack_alpha: 2, attack_step: 20, attack_rand_ini: 1.0}
+  EOT:
+    setting1: {attack_eps:  8, attack_lr: 100.0, attack_step: 100, attack_rand_ini: 1.0, eot_iter: 10}
+  CW:
+    setting1: {c: 0.0001, kappa: 0, steps: 1000, lr: 0.1, attack_rand_ini: 1.0}
