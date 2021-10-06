@@ -1,4 +1,4 @@
-# Codes for "Adversarial Visual Robustness by Causal Intervention"
+# Deprecated Codes
 
 ### CiiV Training
 Using the yaml files in config folder to train the model, for example:
